@@ -89,11 +89,12 @@ def generate_json(number: int, characteristics: dict, address: str):
     eyes_list = traits[4].split('_')
     eyes = eyes_list[0]
     eyes_color = eyes_list[1]
-
+    trait_count = 6
     append_attribute('BG Primary', bg_primary)
 
     if bg_secondary != 'Nothing':
         append_attribute('BG Secondary', bg_secondary)
+        trait_count += 1
 
     append_attribute('Clothes', traits[1])
 
@@ -101,6 +102,7 @@ def generate_json(number: int, characteristics: dict, address: str):
         append_attribute('Hair Back', hair_back)
         append_attribute('Hair Front', hair_front)
         append_attribute('Hair Color', hair_color)
+        trait_count += 3
 
     append_attribute('Eyes', eyes)
 
@@ -112,16 +114,22 @@ def generate_json(number: int, characteristics: dict, address: str):
 
     if traits[7] != 'Nothing':
         append_attribute('Hat', traits[7])
+        trait_count += 1
 
     if traits[10] != 'Nothing':
         append_attribute('Face', traits[10])
+        trait_count += 1
 
     if traits[11] != 'Nothing':
         append_attribute('Hands', traits[11])
+        trait_count += 1
 
     if traits[12] != 'Nothing':
         append_attribute('Effect', traits[12])
+        trait_count += 1
 
+    append_attribute('TraitCount', str(trait_count))
+    
     data["attributes"].append(
         {"display_type": "number", "trait_type": "generation", "value": 1}
     )
